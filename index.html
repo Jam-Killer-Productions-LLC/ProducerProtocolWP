@@ -45,254 +45,276 @@
       alt="Producer Protocol White Paper Header"
       class="header-image"
     />
-
-    ---
-
-    ### 2. Updated `index.html` with the White Paper Content
-    
-    ```html
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Producer Protocol White Paper</title>
-      <meta name="description" content="Read the in-depth Producer Protocol White Paper covering our decentralized platform, smart contract integrations, and updates post-PJK token hack.">
-      <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-      <header>
-        <h1>Producer Protocol White Paper</h1>
-        <nav>
+    <header>
+      <h1>Producer Protocol White Paper</h1>
+      <nav>
+        <ul>
+  
+          <li><a href="https://app.producerprotocol.pro" target="_blank">Producer Protocol App</a></li>
+        </ul>
+      </nav>
+    </header>
+    <nav class="toc">
+      <h2>Table of Contents</h2>
+      <ul>
+        <li><a href="#introduction">1. Introduction</a></li>
+        <li><a href="#problem-statement">2. Problem Statement</a></li>
+        <li><a href="#proposed-solution">3. Proposed Solution</a></li>
+        <li><a href="#platform-structure">4. Platform Structure</a>
           <ul>
-            <li><a href="https://jamkillersound.pro" target="_blank">JamKiller Sound</a></li>
-            <li><a href="https://app.producerprotocol.pro" target="_blank">Producer Protocol App</a></li>
+            <li><a href="#user-types">a. User Types</a></li>
+            <li><a href="#token-system">b. Token System</a></li>
           </ul>
-        </nav>
-      </header>
-      <main>
-        <article>
-          <section id="introduction">
-            <h2>Introduction</h2>
-            <p>
-              Producer Protocol aims to revolutionize the music and media production industry by providing a decentralized platform that enables unprecedented collaboration between artists, producers, and fans. Leveraging blockchain technology, Producer Protocol introduces a unique token system that empowers fans to directly engage with the artists they love while offering artists new avenues for revenue and creative input.
-            </p>
-          </section>
-          <section id="problem-statement">
-            <h2>Problem Statement</h2>
-            <p>
-              The current music and media industry is plagued by centralization, resulting in unfair practices and lack of transparency. Artists and producers face significant challenges in terms of royalty distribution, rights management, and fan engagement. A decentralized solution is needed to address these issues effectively.
-            </p>
-          </section>
-          <section id="proposed-solution">
-            <h2>Proposed Solution</h2>
-            <p>
-              The Super Chain is a decentralized platform built on top of Optimism and integrated with Bitcoin functionality. It aims to provide interoperability, scalability, and security, ensuring fair and transparent practices in the music and media industry.
-            </p>
-          </section>
-          <section id="platform-structure">
-            <h2>Platform Structure</h2>
-            <h3>User Types</h3>
-            <p>
-              <strong>Artists:</strong> Local musicians who can create, share, and monetize their music through the platform.  
-              <strong>Fans:</strong> Listeners who support and engage with artists, earning tokens and participating in the creative process.
-            </p>
-            <h3>Token System</h3>
-            <p>
-              <strong>Fan Tokens:</strong> Earned through engagement, virtual events, and platform interactions.  
-              <strong>Artist Tokens:</strong> Represent project ownership and enable the distribution of rewards and royalties.
-            </p>
-          </section>
-          <section id="features">
-            <h2>Features</h2>
-            <h3>Collaboration Hub</h3>
-            <p>
-              Idea submission, decentralized voting, and live collaboration sessions empower fans and artists to co-create music.
-            </p>
-            <h3>Token Marketplace</h3>
-            <p>
-              Earn and spend tokens to influence creative decisions, access exclusive content, or purchase merchandise.
-            </p>
-            <h3>Artist Profiles</h3>
-            <p>
-              Artists showcase their music portfolios and engage directly with fans through built-in interaction tools.
-            </p>
-            <h3>Community Forums</h3>
-            <p>
-              Discussion boards and event calendars foster a vibrant community of music lovers and creators.
-            </p>
-          </section>
-          <section id="technology-stack">
-            <h2>Technology Stack</h2>
-            <h3>Blockchain</h3>
-            <p>
-              Built on Optimism/Bitcoin/Polygon with smart contracts managing transactions, voting, and NFT minting.
-            </p>
-            <h3>Frontend</h3>
-            <p>
-              Developed using React/Redux and Web3.js for seamless blockchain interactions.
-            </p>
-            <h3>Backend</h3>
-            <p>
-              Node.js and IPFS are used for decentralized storage and server-side operations.
-            </p>
-            <h3>Integration</h3>
-            <p>
-              Wallet integrations (e.g., MetaMask) and streaming service support enhance user experience.
-            </p>
-          </section>
-          <section id="smart-contract-examples">
-            <h2>Smart Contract Examples</h2>
-            <h3>Royalty Distribution Smart Contract</h3>
-            <pre><code>
-    // SPDX-License-Identifier: MIT
-    pragma solidity ^0.8.0;
-    
-    contract RoyaltyDistribution {
-        address public owner;
-        mapping(address => uint256) public royalties;
-    
-        event RoyaltyPaid(address indexed artist, uint256 amount);
-    
-        modifier onlyOwner() {
-            require(msg.sender == owner, "Only the owner can perform this action");
-            _;
-        }
-    
-        constructor() {
-            owner = msg.sender;
-        }
-    
-        function payRoyalty(address artist, uint256 amount) public onlyOwner {
-            royalties[artist] += amount;
-            emit RoyaltyPaid(artist, amount);
-        }
-    
-        function withdraw() public {
-            uint256 amount = royalties[msg.sender];
-            require(amount > 0, "No royalties available for withdrawal");
-            royalties[msg.sender] = 0;
-            payable(msg.sender).transfer(amount);
-        }
-    
-        receive() external payable {}
-    }
-            </code></pre>
-            <h3>Voting System Smart Contract</h3>
-            <pre><code>
-    // SPDX-License-Identifier: MIT
-    pragma solidity ^0.8.0;
-    
-    contract VotingSystem {
-        struct Proposal {
-            string description;
-            uint256 voteCount;
-        }
-    
-        address public owner;
-        Proposal[] public proposals;
-        mapping(address => bool) public hasVoted;
-    
-        event ProposalAdded(uint256 proposalId, string description);
-        event Voted(address indexed voter, uint256 proposalId);
-    
-        modifier onlyOwner() {
-            require(msg.sender == owner, "Only the owner can perform this action");
-            _;
-        }
-    
-        constructor() {
-            owner = msg.sender;
-        }
-    
-        function addProposal(string memory description) public onlyOwner {
-            proposals.push(Proposal({ description: description, voteCount: 0 }));
-            emit ProposalAdded(proposals.length - 1, description);
-        }
-    
-        function vote(uint256 proposalId) public {
-            require(!hasVoted[msg.sender], "Already voted");
-            require(proposalId < proposals.length, "Invalid proposal ID");
-    
-            proposals[proposalId].voteCount += 1;
-            hasVoted[msg.sender] = true;
-            emit Voted(msg.sender, proposalId);
-        }
-    
-        function getProposal(uint256 proposalId) public view returns (string memory description, uint256 voteCount) {
-            require(proposalId < proposals.length, "Invalid proposal ID");
-            Proposal storage proposal = proposals[proposalId];
-            return (proposal.description, proposal.voteCount);
-        }
-    }
-            </code></pre>
-          </section>
-          <section id="contract-details">
-            <h2>Contract Details</h2>
-            <p>
-              In addition to the smart contracts above, our platform utilizes the following critical contracts:
-            </p>
-            <ul>
-              <li>
-                <strong>Core Contract:</strong>  
-                <a href="https://etherscan.io/address/0xf9e7D3cd71Ee60C7A3A64Fa7Fcb81e610Ce1daA5" target="_blank">
-                  0xf9e7D3cd71Ee60C7A3A64Fa7Fcb81e610Ce1daA5
-                </a>
-              </li>
-              <li>
-                <strong>Mojo Claim Contract:</strong>  
-                <a href="https://etherscan.io/address/0x84d133d1cecb3190e110118ac6598c9ba45a6fd2" target="_blank">
-                  0x84d133d1cecb3190e110118ac6598c9ba45a6fd2
-                </a>
-              </li>
-            </ul>
-          </section>
-          <section id="legal-compliance">
-            <h2>Legal &amp; Compliance</h2>
-            <h3>Terms of Service</h3>
-            <p>
-              <strong>Artists:</strong> Retain full ownership, receive royalties, maintain creative control, and expect privacy protection. They must comply with platform guidelines, ensure originality, and actively engage with the community.
-            </p>
-            <p>
-              <strong>Fans:</strong> Are granted access to participate, earn tokens, and engage in voting. They must interact respectfully and adhere to community standards.
-            </p>
-            <p>
-              <strong>General Platform Rules:</strong> All content must meet strict guidelines, and disputes are resolved through a predefined process.
-            </p>
-            <h3>Royalty Agreements</h3>
-            <p>
-              Earnings are allocated based on smart contract agreements. Automated systems ensure transparency, and disputes are resolved through an established process.
-            </p>
-          </section>
-          <section id="marketing-community">
-            <h2>Marketing &amp; Community Building</h2>
-            <p>
-              Collaborations with local music venues, educational institutions, and engaging social media activities drive community growth.
-            </p>
-          </section>
-          <section id="sustainability-growth">
-            <h2>Sustainability &amp; Growth</h2>
-            <p>
-              We plan for exponential growth while adopting eco-friendly blockchain solutions to minimize environmental impact.
-            </p>
-          </section>
-          <section id="roadmap">
-            <h2>Roadmap and Future Developments</h2>
-            <p>
-              <strong>Short-term Goals:</strong> Finalize development, engage community for feedback, and deploy the platform.  
-              <strong>Long-term Vision:</strong> Expand to new blockchains, continuously innovate features, and forge strategic partnerships.
-            </p>
-          </section>
-          <section id="conclusion">
-            <h2>Conclusion</h2>
-            <p>
-              Producer Protocol is not just a platform but a paradigm shift in music creation, ownership, and collaboration. Through decentralized governance, robust security, and a passionate community, we are redefining the future of digital media.
-            </p>
-          </section>
-        </article>
-      </main>
-      <footer>
-        <p>&copy; 2025 Producer Protocol. All rights reserved.</p>
-      </footer>
-    </body>
-    </html>
+        </li>
+        <li><a href="#features">5. Features</a>
+          <ul>
+            <li><a href="#collaboration-hub">a. Collaboration Hub</a></li>
+            <li><a href="#token-marketplace">b. Token Marketplace</a></li>
+            <li><a href="#artist-profiles">c. Artist Profiles</a></li>
+            <li><a href="#community-forums">d. Community Forums</a></li>
+          </ul>
+        </li>
+        <li><a href="#technology-stack">6. Technology Stack</a>
+          <ul>
+            <li><a href="#blockchain">a. Blockchain</a></li>
+            <li><a href="#frontend">b. Frontend</a></li>
+            <li><a href="#backend">c. Backend</a></li>
+            <li><a href="#integration">d. Integration</a></li>
+          </ul>
+        </li>
+        <li><a href="#smart-contract-examples">7. Smart Contract Examples</a>
+          <ul>
+            <li><a href="#royalty-distribution-smart-contract">a. Royalty Distribution Smart Contract</a></li>
+            <li><a href="#voting-system-smart-contract">b. Voting System Smart Contract</a></li>
+          </ul>
+        </li>
+        <li><a href="#contract-details">8. Contract Details</a></li>
+        <li><a href="#legal-compliance">9. Legal &amp; Compliance</a></li>
+        <li><a href="#marketing-community">10. Marketing &amp; Community Building</a></li>
+        <li><a href="#sustainability-growth">11. Sustainability &amp; Growth</a></li>
+        <li><a href="#roadmap">12. Roadmap and Future Developments</a></li>
+        <li><a href="#conclusion">13. Conclusion</a></li>
+      </ul>
+    </nav>
+    <main>
+      <article>
+        <section id="introduction">
+          <h2>1. Introduction</h2>
+          <p>
+            Producer Protocol aims to revolutionize the music and media production industry by providing a decentralized platform that enables unprecedented collaboration between artists, producers, and fans. Leveraging blockchain technology, Producer Protocol introduces a unique token system that empowers fans to directly engage with the artists they love while offering artists new avenues for revenue and creative input.
+          </p>
+        </section>
+        <section id="problem-statement">
+          <h2>2. Problem Statement</h2>
+          <p>
+            The current music and media industry is plagued by centralization, resulting in unfair practices and lack of transparency. Artists and producers face significant challenges in terms of royalty distribution, rights management, and fan engagement. A decentralized solution is needed to address these issues effectively.
+          </p>
+        </section>
+        <section id="proposed-solution">
+          <h2>3. Proposed Solution</h2>
+          <p>
+            The Super Chain is a decentralized platform built on top of Optimism and integrated with Bitcoin functionality. It aims to provide interoperability, scalability, and security, ensuring fair and transparent practices in the music and media industry.
+          </p>
+        </section>
+        <section id="platform-structure">
+          <h2>4. Platform Structure</h2>
+          <h3 id="user-types">a. User Types</h3>
+          <p>
+            <strong>Artists:</strong> Local musicians who can create, share, and monetize their music through the platform.  
+            <strong>Fans:</strong> Listeners who support and engage with artists, earning tokens and participating in the creative process.
+          </p>
+          <h3 id="token-system">b. Token System</h3>
+          <p>
+            <strong>Fan Tokens:</strong> Earned through engagement, virtual events, and platform interactions.  
+            <strong>Artist Tokens:</strong> Represent ownership in projects and enable the distribution of rewards and royalties.
+          </p>
+        </section>
+        <section id="features">
+          <h2>5. Features</h2>
+          <h3 id="collaboration-hub">a. Collaboration Hub</h3>
+          <p>
+            Idea submission, decentralized voting, and live collaboration sessions empower fans and artists to co-create music.
+          </p>
+          <h3 id="token-marketplace">b. Token Marketplace</h3>
+          <p>
+            Earn and spend tokens to influence creative decisions, access exclusive content, or purchase merchandise.
+          </p>
+          <h3 id="artist-profiles">c. Artist Profiles</h3>
+          <p>
+            Artists showcase their music portfolios and engage directly with fans via built-in interaction tools.
+          </p>
+          <h3 id="community-forums">d. Community Forums</h3>
+          <p>
+            Discussion boards and event calendars foster a vibrant community of music lovers and creators.
+          </p>
+        </section>
+        <section id="technology-stack">
+          <h2>6. Technology Stack</h2>
+          <h3 id="blockchain">a. Blockchain</h3>
+          <p>
+            Built on Optimism/Bitcoin/Polygon with smart contracts managing transactions, voting, and NFT minting.
+          </p>
+          <h3 id="frontend">b. Frontend</h3>
+          <p>
+            Developed using React/Redux and Web3.js for seamless blockchain interactions.
+          </p>
+          <h3 id="backend">c. Backend</h3>
+          <p>
+            Node.js and IPFS power the backend for decentralized storage and server-side operations.
+          </p>
+          <h3 id="integration">d. Integration</h3>
+          <p>
+            Wallet integrations (e.g., MetaMask) and streaming service support enhance user experience.
+          </p>
+        </section>
+        <section id="smart-contract-examples">
+          <h2>7. Smart Contract Examples</h2>
+          <h3 id="royalty-distribution-smart-contract">a. Royalty Distribution Smart Contract</h3>
+          <pre><code>
+  // SPDX-License-Identifier: MIT
+  pragma solidity ^0.8.0;
+  
+  contract RoyaltyDistribution {
+      address public owner;
+      mapping(address => uint256) public royalties;
+  
+      event RoyaltyPaid(address indexed artist, uint256 amount);
+  
+      modifier onlyOwner() {
+          require(msg.sender == owner, "Only the owner can perform this action");
+          _;
+      }
+  
+      constructor() {
+          owner = msg.sender;
+      }
+  
+      function payRoyalty(address artist, uint256 amount) public onlyOwner {
+          royalties[artist] += amount;
+          emit RoyaltyPaid(artist, amount);
+      }
+  
+      function withdraw() public {
+          uint256 amount = royalties[msg.sender];
+          require(amount > 0, "No royalties available for withdrawal");
+          royalties[msg.sender] = 0;
+          payable(msg.sender).transfer(amount);
+      }
+  
+      receive() external payable {}
+  }
+          </code></pre>
+          <h3 id="voting-system-smart-contract">b. Voting System Smart Contract</h3>
+          <pre><code>
+  // SPDX-License-Identifier: MIT
+  pragma solidity ^0.8.0;
+  
+  contract VotingSystem {
+      struct Proposal {
+          string description;
+          uint256 voteCount;
+      }
+  
+      address public owner;
+      Proposal[] public proposals;
+      mapping(address => bool) public hasVoted;
+  
+      event ProposalAdded(uint256 proposalId, string description);
+      event Voted(address indexed voter, uint256 proposalId);
+  
+      modifier onlyOwner() {
+          require(msg.sender == owner, "Only the owner can perform this action");
+          _;
+      }
+  
+      constructor() {
+          owner = msg.sender;
+      }
+  
+      function addProposal(string memory description) public onlyOwner {
+          proposals.push(Proposal({ description: description, voteCount: 0 }));
+          emit ProposalAdded(proposals.length - 1, description);
+      }
+  
+      function vote(uint256 proposalId) public {
+          require(!hasVoted[msg.sender], "Already voted");
+          require(proposalId < proposals.length, "Invalid proposal ID");
+  
+          proposals[proposalId].voteCount += 1;
+          hasVoted[msg.sender] = true;
+          emit Voted(msg.sender, proposalId);
+      }
+  
+      function getProposal(uint256 proposalId) public view returns (string memory description, uint256 voteCount) {
+          require(proposalId < proposals.length, "Invalid proposal ID");
+          Proposal storage proposal = proposals[proposalId];
+          return (proposal.description, proposal.voteCount);
+      }
+  }
+          </code></pre>
+        </section>
+        <section id="contract-details">
+          <h2>8. Contract Details</h2>
+          <p>
+            In addition to the smart contracts above, our platform uses these critical contracts:
+          </p>
+          <ul>
+            <li>
+              <strong>Core Contract:</strong>  
+              <a href="https://etherscan.io/address/0xf9e7D3cd71Ee60C7A3A64Fa7Fcb81e610Ce1daA5" target="_blank">0xf9e7D3cd71Ee60C7A3A64Fa7Fcb81e610Ce1daA5</a>
+            </li>
+            <li>
+              <strong>Mojo Claim Contract:</strong>  
+              <a href="https://etherscan.io/address/0x84d133d1cecb3190e110118ac6598c9ba45a6fd2" target="_blank">0x84d133d1cecb3190e110118ac6598c9ba45a6fd2</a>
+            </li>
+          </ul>
+        </section>
+        <section id="legal-compliance">
+          <h2>9. Legal &amp; Compliance</h2>
+          <h3>Terms of Service</h3>
+          <p>
+            <strong>Artists:</strong> Retain full ownership, receive royalties, maintain creative control, and enjoy privacy protection. They must comply with platform guidelines, ensure originality, and actively engage with the community.
+          </p>
+          <p>
+            <strong>Fans:</strong> Granted access to participate, earn tokens, and vote while expected to engage respectfully and adhere to community standards.
+          </p>
+          <p>
+            <strong>General Platform Rules:</strong> All content must meet strict guidelines, with disputes resolved through a predefined process.
+          </p>
+          <h3>Royalty Agreements</h3>
+          <p>
+            Royalties are allocated based on smart contract agreements, token holdings, and user contributions. Automated processes ensure transparency and timely payments, with clear dispute resolution procedures in place.
+          </p>
+        </section>
+        <section id="marketing-community">
+          <h2>10. Marketing &amp; Community Building</h2>
+          <p>
+            Our marketing strategy involves partnerships with local music venues, educational institutions, and active social media engagement to drive community growth.
+          </p>
+        </section>
+        <section id="sustainability-growth">
+          <h2>11. Sustainability &amp; Growth</h2>
+          <p>
+            We design for exponential scalability and are committed to eco-friendly blockchain practices to minimize environmental impact.
+          </p>
+        </section>
+        <section id="roadmap">
+          <h2>12. Roadmap and Future Developments</h2>
+          <p>
+            <strong>Short-term Goals:</strong> Finalize development, gather community feedback, and launch enhanced NFT and DeFi features.  
+            <strong>Long-term Vision:</strong> Expand to additional blockchains, continuously innovate, and establish strategic industry partnerships.
+          </p>
+        </section>
+        <section id="conclusion">
+          <h2>13. Conclusion</h2>
+          <p>
+            Producer Protocol is more than a music platform—it represents a paradigm shift in digital media creation, ownership, and collaboration. Through decentralized governance, robust security, and a passionate community, we are setting a new standard for transparency and innovation in the music industry.
+          </p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>&copy; 2025 Producer Protocol. All rights reserved.</p>
+    </footer>
+  </body>
+  </html>
