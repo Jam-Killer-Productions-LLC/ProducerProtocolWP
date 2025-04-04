@@ -82,13 +82,23 @@
       justify-content: center;
       gap: 2rem;
       list-style: none;
+      transition: max-height 0.3s ease-in-out;
     }
     
     @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
       nav ul {
         flex-direction: column;
         align-items: center;
-        gap: 1rem;
+        max-height: 0;
+        overflow: hidden;
+      }
+
+      nav ul.open {
+        max-height: 500px; /* Arbitrary large value to show all items */
       }
     }
     
@@ -130,6 +140,14 @@
       height: 48px;
       object-fit: contain;
     }
+    .token-address {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .contract-address {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
     
     /* Headings & Text */
     h2 {
@@ -169,6 +187,23 @@
     .backlit {
       text-shadow: 0 0 15px rgba(30, 215, 96, 0.8);
     }
+
+    /* Mobile Menu Styles */
+    .menu-toggle {
+      display: none;
+      background: #1DB954;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 0.5rem auto;
+    }
+
+    .menu-toggle:focus {
+      outline: none;
+    }
   </style>
 </head>
 <body>
@@ -179,7 +214,8 @@
     </div>
   </header>
   <nav>
-    <ul>
+    <button class="menu-toggle" onclick="toggleMenu()">Menu</button>
+    <ul id="menu">
       <li><a href="#introduction">Introduction</a></li>
       <li><a href="#problem-statement">Problem Statement</a></li>
       <li><a href="#proposed-solution">Proposed Solution</a></li>
@@ -248,14 +284,14 @@
       <p>At the heart of our platform is our proprietary Super Chain, designed for secure, scalable transactions using Optimism integrated with Bitcoin functionality. Complementing this is <strong>ChainCompress</strong>—an advanced data compression and integrity solution that reduces large media files and anchors their digital fingerprints on-chain, ensuring data authenticity and seamless migration.</p>
     </section>
     <section id="smart-contracts" class="card">
-      <h2>7. Smart Contracts & Technical Details</h2>
+        <p class="contract-address">0xf9e7D3cd71Ee60C7A3A64Fa7Fcb81e610Ce1daA5</p>
       <p>The backbone of our decentralized ecosystem is built upon rigorously developed smart contracts. The main verified token contract for Mojo is:</p>
       <div class="token-container">
         <img src="https://bafybeig6dpytw3q4v7vzdy6sb7q4x3apqgrvfi3zsbvb3n6wvs5unfr36i.ipfs.dweb.link?filename=480.gif" alt="Mojo Token Logo" class="token-logo">
         <p style="font-weight:600; font-size:1.1rem;">0xf9e7D3cd71Ee60C7A3A64Fa7Fcb81e610Ce1daA5</p>
       </div>
       <p>For the latest smart contract code, technical documentation, and ongoing updates, please visit our GitHub repository:</p>
-      <p><a href="https://github.com/Jam-Killer-Productions-LLC" target="_blank">Jamkiller Productions Repository</a></p>
+      <p><a href="https://github.com/Jam-Killer-Productions-LLC" target="_blank" rel="noopener">Jamkiller Productions Repository</a></p>
     </section>
     <section id="legal" class="card">
       <h2>8. Legal & Compliance</h2>
@@ -297,7 +333,14 @@
     </section>
   </div>
   <footer>
-    <p>© 2025 <a href="https://producerprotocol.pro" target="_blank">Producer Protocol</a>. All rights reserved.</p>
+    <p>© 2025 <a href="https://producerprotocol.pro" target="_blank" rel="noopener noreferrer">Producer Protocol</a>. All rights reserved.</p>
   </footer>
+  <script>
+    // filepath: /Volumes/Jam Killer Actual/GithubRepos/ProducerProtocolWP/index.html
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('open');
+    }
+  </script>
 </body>
 </html>
