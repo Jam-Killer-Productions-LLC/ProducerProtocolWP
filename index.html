@@ -36,12 +36,15 @@
     header {
       position: relative;
       height: 50vh;
-      background: url("https://bafybeibhl7ntrgw4uj5yddknnaf7syfvbcenoszwrjowycob4dtsnevmxu.ipfs.dweb.link?filename=ppwpwide.gif") center/cover no-repeat, #121212;
+      background: url("https://bafybeibhl7ntrgw4uj5yddknnaf7syfvbcenoszwrjowycob4dtsnevmxu.ipfs.dweb.link?filename=ppwpwide.gif") center/cover no-repeat;
     }
     header::after {
       content: "";
       position: absolute;
-      inset: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
       background: rgba(0, 0, 0, 0.5);
     }
     .header-content {
@@ -84,21 +87,33 @@
       list-style: none;
       transition: max-height 0.3s ease-in-out;
     }
+    .menu-toggle {
+      display: none;
+      background: #1DB954;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 0.5rem auto;
+    }
+    .menu-toggle:focus {
+      outline: none;
+    }
     
     @media (max-width: 768px) {
       .menu-toggle {
         display: block;
       }
-
       nav ul {
         flex-direction: column;
         align-items: center;
         max-height: 0;
         overflow: hidden;
       }
-
       nav ul.open {
-        max-height: 500px; /* Arbitrary large value to show all items */
+        max-height: 500px; /* An arbitrary large value to ensure all items are visible */
       }
     }
     
@@ -140,10 +155,7 @@
       height: 48px;
       object-fit: contain;
     }
-    .token-address {
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
+    .token-address,
     .contract-address {
       font-weight: 600;
       font-size: 1.1rem;
@@ -187,23 +199,6 @@
     .backlit {
       text-shadow: 0 0 15px rgba(30, 215, 96, 0.8);
     }
-
-    /* Mobile Menu Styles */
-    .menu-toggle {
-      display: none;
-      background: #1DB954;
-      color: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 5px;
-      margin: 0.5rem auto;
-    }
-
-    .menu-toggle:focus {
-      outline: none;
-    }
   </style>
 </head>
 <body>
@@ -223,7 +218,7 @@
       <li><a href="#core-features">Core Features</a></li>
       <li><a href="#technology-stack">Technology</a></li>
       <li><a href="#smart-contracts">Smart Contracts</a></li>
-      <li><a href="#legal">Legal & Compliance</a></li>
+      <li><a href="#legal">Legal &amp; Compliance</a></li>
       <li><a href="#marketing">Marketing</a></li>
       <li><a href="#sustainability">Sustainability</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
@@ -250,8 +245,8 @@
       <p>Our solution is built on a decentralized framework that marries blockchain’s immutable security with innovative data compression and integrity techniques. Key components include:</p>
       <ul>
         <li><strong>Decentralized Governance:</strong> A transparent token-based ecosystem that empowers artists, producers, and fans.</li>
-        <li><strong>Interoperability & Scalability:</strong> Our proprietary Super Chain—built on Optimism and integrated with Bitcoin functionality—ensures secure and scalable transactions.</li>
-        <li><strong>Data Compression & Integrity (ChainCompress):</strong> A state-of-the-art method that reduces data size using advanced, domain-specific algorithms and anchors cryptographic fingerprints on-chain for verified authenticity.</li>
+        <li><strong>Interoperability &amp; Scalability:</strong> Our proprietary Super Chain—built on Optimism and integrated with Bitcoin functionality—ensures secure and scalable transactions.</li>
+        <li><strong>Data Compression &amp; Integrity (ChainCompress):</strong> A state-of-the-art method that reduces data size using advanced, domain-specific algorithms and anchors cryptographic fingerprints on-chain for verified authenticity.</li>
       </ul>
       <p>This robust approach minimizes storage footprints, bolsters data security, and facilitates seamless, standardized data sharing across AI modules and decentralized storage systems.</p>
     </section>
@@ -261,7 +256,7 @@
       <ul>
         <li><strong>Artists:</strong> Creators who produce, share, and monetize their work.</li>
         <li><strong>Fans:</strong> Engaged supporters who earn tokens and actively contribute to creative projects.</li>
-        <li><strong>Producers & Collaborators:</strong> Industry professionals enhancing the creative process.</li>
+        <li><strong>Producers &amp; Collaborators:</strong> Industry professionals enhancing the creative process.</li>
       </ul>
       <h3>Token System</h3>
       <ul>
@@ -275,16 +270,16 @@
       <p>A decentralized space for idea submission, voting, and live collaboration that empowers both fans and artists to co-create and innovate.</p>
       <h3>Token Marketplace</h3>
       <p>A dynamic marketplace enabling users to earn, spend, and trade tokens for exclusive content and creative influence.</p>
-      <h3>Artist Profiles & Community Forums</h3>
+      <h3>Artist Profiles &amp; Community Forums</h3>
       <p>Robust profiles and interactive forums foster direct engagement, showcase portfolios, and drive community collaboration.</p>
     </section>
     <section id="technology-stack" class="card">
       <h2>6. Technology</h2>
-      <h3>Blockchain & Data Integrity</h3>
+      <h3>Blockchain &amp; Data Integrity</h3>
       <p>At the heart of our platform is our proprietary Super Chain, designed for secure, scalable transactions using Optimism integrated with Bitcoin functionality. Complementing this is <strong>ChainCompress</strong>—an advanced data compression and integrity solution that reduces large media files and anchors their digital fingerprints on-chain, ensuring data authenticity and seamless migration.</p>
     </section>
     <section id="smart-contracts" class="card">
-        <p class="contract-address">0xf9e7D3cd71Ee60C7A3A64Fa7Fcb81e610Ce1daA5</p>
+      <p class="contract-address">0xf9e7D3cd71Ee60C7A3A64Fa7Fcb81e610Ce1daA5</p>
       <p>The backbone of our decentralized ecosystem is built upon rigorously developed smart contracts. The main verified token contract for Mojo is:</p>
       <div class="token-container">
         <img src="https://bafybeig6dpytw3q4v7vzdy6sb7q4x3apqgrvfi3zsbvb3n6wvs5unfr36i.ipfs.dweb.link?filename=480.gif" alt="Mojo Token Logo" class="token-logo">
@@ -294,7 +289,7 @@
       <p><a href="https://github.com/Jam-Killer-Productions-LLC" target="_blank" rel="noopener">Jamkiller Productions Repository</a></p>
     </section>
     <section id="legal" class="card">
-      <h2>8. Legal & Compliance</h2>
+      <h2>8. Legal &amp; Compliance</h2>
       <h3>Terms of Service</h3>
       <ul>
         <li><strong>Artists:</strong> Retain full ownership, receive royalties, and maintain creative control while enjoying privacy protection.</li>
@@ -305,11 +300,11 @@
       <p>Royalty distributions are automated through smart contracts based on token holdings and user contributions, ensuring transparency and timely payments.</p>
     </section>
     <section id="marketing" class="card">
-      <h2>9. Marketing & Community Building</h2>
+      <h2>9. Marketing &amp; Community Building</h2>
       <p>Our outreach strategy encompasses partnerships with local music venues, educational institutions, and a robust social media presence to drive community growth and platform adoption.</p>
     </section>
     <section id="sustainability" class="card">
-      <h2>10. Sustainability & Growth</h2>
+      <h2>10. Sustainability &amp; Growth</h2>
       <p>Engineered for exponential scalability, Producer Protocol is committed to eco-friendly practices, leveraging energy-efficient consensus mechanisms to minimize environmental impact.</p>
     </section>
     <section id="roadmap" class="card">
@@ -336,7 +331,7 @@
     <p>© 2025 <a href="https://producerprotocol.pro" target="_blank" rel="noopener noreferrer">Producer Protocol</a>. All rights reserved.</p>
   </footer>
   <script>
-    // filepath: /Volumes/Jam Killer Actual/GithubRepos/ProducerProtocolWP/index.html
+    // Toggle the mobile menu
     function toggleMenu() {
       const menu = document.getElementById('menu');
       menu.classList.toggle('open');
