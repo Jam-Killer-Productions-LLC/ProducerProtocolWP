@@ -37,6 +37,33 @@
         height: auto;
         margin-bottom: 20px;
       }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 10px;
+        }
+        .header-image {
+          width: 100%;
+          height: auto;
+        }
+        nav ul {
+          display: flex;
+          flex-direction: column;
+          padding: 0;
+        }
+        nav ul li {
+          margin-bottom: 10px;
+        }
+        .toc ul {
+          padding-left: 20px;
+        }
+        .toc ul ul {
+          padding-left: 20px;
+        }
+        pre {
+          font-size: 14px;
+        }
+      }
     </style>
   </head>
   <body>
